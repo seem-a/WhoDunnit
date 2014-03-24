@@ -7,11 +7,17 @@
 //
 
 #import "WDAppDelegate.h"
+#import "WDLogInViewController.h"
+#import "WDSignUpViewController.h"
 
 @implementation WDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"kez4qy0YxcCyrfdLcv31Kh5aDBQHRm08az2iN7rx" clientKey:@"WqDVvkPgnYH0FMpovFasjyAFANwcaUmaee6fKUBS"];
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+
     // Override point for customization after application launch.
     return YES;
 }

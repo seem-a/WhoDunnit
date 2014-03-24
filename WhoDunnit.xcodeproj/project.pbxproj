@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8413A0C918D708A700E3C370 /* WDListsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8413A0C818D708A700E3C370 /* WDListsTableViewCell.m */; };
 		843AB00A18D3A9BB006BE0FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB00918D3A9BB006BE0FB /* Foundation.framework */; };
 		843AB00C18D3A9BB006BE0FB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB00B18D3A9BB006BE0FB /* CoreGraphics.framework */; };
 		843AB00E18D3A9BB006BE0FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB00D18D3A9BB006BE0FB /* UIKit.framework */; };
@@ -14,13 +15,36 @@
 		843AB01618D3A9BB006BE0FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AB01518D3A9BB006BE0FB /* main.m */; };
 		843AB01A18D3A9BB006BE0FB /* WDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AB01918D3A9BB006BE0FB /* WDAppDelegate.m */; };
 		843AB01D18D3A9BB006BE0FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 843AB01B18D3A9BB006BE0FB /* Main.storyboard */; };
-		843AB02018D3A9BB006BE0FB /* WDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AB01F18D3A9BB006BE0FB /* WDViewController.m */; };
 		843AB02218D3A9BB006BE0FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 843AB02118D3A9BB006BE0FB /* Images.xcassets */; };
 		843AB02918D3A9BB006BE0FB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB02818D3A9BB006BE0FB /* XCTest.framework */; };
 		843AB02A18D3A9BB006BE0FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB00918D3A9BB006BE0FB /* Foundation.framework */; };
 		843AB02B18D3A9BB006BE0FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB00D18D3A9BB006BE0FB /* UIKit.framework */; };
 		843AB03318D3A9BB006BE0FB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 843AB03118D3A9BB006BE0FB /* InfoPlist.strings */; };
 		843AB03518D3A9BB006BE0FB /* WhoDunnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AB03418D3A9BB006BE0FB /* WhoDunnitTests.m */; };
+		843AB04018D3AA7C006BE0FB /* WDListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843AB03F18D3AA7C006BE0FB /* WDListsTableViewController.m */; };
+		843AB04218D3C4F4006BE0FB /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843AB04118D3C4F4006BE0FB /* Parse.framework */; };
+		8440A6EC18D3CA38003AA472 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6EB18D3CA38003AA472 /* AudioToolbox.framework */; };
+		8440A6EE18D3CA47003AA472 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6ED18D3CA47003AA472 /* CFNetwork.framework */; };
+		8440A6F018D3CA5F003AA472 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6EF18D3CA5F003AA472 /* CoreLocation.framework */; };
+		8440A6F218D3CA78003AA472 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6F118D3CA78003AA472 /* libz.1.2.5.dylib */; };
+		8440A6F418D3CA89003AA472 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6F318D3CA89003AA472 /* MobileCoreServices.framework */; };
+		8440A6F618D3CA94003AA472 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6F518D3CA94003AA472 /* QuartzCore.framework */; };
+		8440A6F818D3CA9E003AA472 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6F718D3CA9E003AA472 /* Security.framework */; };
+		8440A6FA18D3CAA7003AA472 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6F918D3CAA7003AA472 /* StoreKit.framework */; };
+		8440A6FC18D3CAB3003AA472 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8440A6FB18D3CAB3003AA472 /* SystemConfiguration.framework */; };
+		8440A70018D3D2C3003AA472 /* WDItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A6FF18D3D2C3003AA472 /* WDItemsViewController.m */; };
+		8440A70718D46716003AA472 /* WDItemsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A70618D46716003AA472 /* WDItemsTableViewCell.m */; };
+		8440A70A18D4F34E003AA472 /* WDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A70918D4F34E003AA472 /* WDItem.m */; };
+		8440A70F18D5B060003AA472 /* WDList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A70E18D5B060003AA472 /* WDList.m */; };
+		8446BBE518DEE3D200819478 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BBE418DEE3D200819478 /* group-25.png */; };
+		8446BBEB18E0044B00819478 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BBEA18E0044B00819478 /* list.png */; };
+		8446BBED18E0083E00819478 /* lists.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BBEC18E0083E00819478 /* lists.png */; };
+		8446BBF418E0617300819478 /* WDListMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446BBF318E0617300819478 /* WDListMembersViewController.m */; };
+		8446BC3818E0621B00819478 /* Flaticon_13194-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BC3618E0621B00819478 /* Flaticon_13194-4.png */; };
+		8446BC3918E0621B00819478 /* menu-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BC3718E0621B00819478 /* menu-25.png */; };
+		8456CA1318DD27F9000C1255 /* WDLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1218DD27F9000C1255 /* WDLogInViewController.m */; };
+		8456CA1618DD2819000C1255 /* WDSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1518DD2819000C1255 /* WDSignUpViewController.m */; };
+		8456CA1918DE953E000C1255 /* WDACL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1818DE953E000C1255 /* WDACL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8413A0C718D708A700E3C370 /* WDListsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDListsTableViewCell.h; sourceTree = "<group>"; };
+		8413A0C818D708A700E3C370 /* WDListsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDListsTableViewCell.m; sourceTree = "<group>"; };
 		843AB00618D3A9BB006BE0FB /* WhoDunnit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoDunnit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AB00918D3A9BB006BE0FB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		843AB00B18D3A9BB006BE0FB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,14 +71,45 @@
 		843AB01818D3A9BB006BE0FB /* WDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDAppDelegate.h; sourceTree = "<group>"; };
 		843AB01918D3A9BB006BE0FB /* WDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDAppDelegate.m; sourceTree = "<group>"; };
 		843AB01C18D3A9BB006BE0FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		843AB01E18D3A9BB006BE0FB /* WDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDViewController.h; sourceTree = "<group>"; };
-		843AB01F18D3A9BB006BE0FB /* WDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDViewController.m; sourceTree = "<group>"; };
 		843AB02118D3A9BB006BE0FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		843AB02718D3A9BB006BE0FB /* WhoDunnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhoDunnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		843AB02818D3A9BB006BE0FB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		843AB03018D3A9BB006BE0FB /* WhoDunnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WhoDunnitTests-Info.plist"; sourceTree = "<group>"; };
 		843AB03218D3A9BB006BE0FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		843AB03418D3A9BB006BE0FB /* WhoDunnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WhoDunnitTests.m; sourceTree = "<group>"; };
+		843AB03E18D3AA7C006BE0FB /* WDListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDListsTableViewController.h; sourceTree = "<group>"; };
+		843AB03F18D3AA7C006BE0FB /* WDListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDListsTableViewController.m; sourceTree = "<group>"; };
+		843AB04118D3C4F4006BE0FB /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		8440A6EB18D3CA38003AA472 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8440A6ED18D3CA47003AA472 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8440A6EF18D3CA5F003AA472 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8440A6F118D3CA78003AA472 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		8440A6F318D3CA89003AA472 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		8440A6F518D3CA94003AA472 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8440A6F718D3CA9E003AA472 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8440A6F918D3CAA7003AA472 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		8440A6FB18D3CAB3003AA472 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8440A6FE18D3D2C3003AA472 /* WDItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDItemsViewController.h; sourceTree = "<group>"; };
+		8440A6FF18D3D2C3003AA472 /* WDItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDItemsViewController.m; sourceTree = "<group>"; };
+		8440A70518D46716003AA472 /* WDItemsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDItemsTableViewCell.h; sourceTree = "<group>"; };
+		8440A70618D46716003AA472 /* WDItemsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDItemsTableViewCell.m; sourceTree = "<group>"; };
+		8440A70818D4F34E003AA472 /* WDItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDItem.h; sourceTree = "<group>"; };
+		8440A70918D4F34E003AA472 /* WDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDItem.m; sourceTree = "<group>"; };
+		8440A70D18D5B060003AA472 /* WDList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDList.h; sourceTree = "<group>"; };
+		8440A70E18D5B060003AA472 /* WDList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDList.m; sourceTree = "<group>"; };
+		8446BBE418DEE3D200819478 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "../../../../iOS7_icons/PNG/Users/group/group-25.png"; sourceTree = "<group>"; };
+		8446BBEA18E0044B00819478 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = WhoDunnit/list.png; sourceTree = SOURCE_ROOT; };
+		8446BBEC18E0083E00819478 /* lists.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lists.png; path = WhoDunnit/lists.png; sourceTree = SOURCE_ROOT; };
+		8446BBF218E0617300819478 /* WDListMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDListMembersViewController.h; path = WhoDunnit/WDListMembersViewController.h; sourceTree = "<group>"; };
+		8446BBF318E0617300819478 /* WDListMembersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDListMembersViewController.m; path = WhoDunnit/WDListMembersViewController.m; sourceTree = "<group>"; };
+		8446BC3618E0621B00819478 /* Flaticon_13194-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Flaticon_13194-4.png"; path = "WhoDunnit/Flaticon_13194-4.png"; sourceTree = SOURCE_ROOT; };
+		8446BC3718E0621B00819478 /* menu-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-25.png"; path = "WhoDunnit/menu-25.png"; sourceTree = SOURCE_ROOT; };
+		8456CA1118DD27F9000C1255 /* WDLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLogInViewController.h; sourceTree = "<group>"; };
+		8456CA1218DD27F9000C1255 /* WDLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLogInViewController.m; sourceTree = "<group>"; };
+		8456CA1418DD2819000C1255 /* WDSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSignUpViewController.h; sourceTree = "<group>"; };
+		8456CA1518DD2819000C1255 /* WDSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSignUpViewController.m; sourceTree = "<group>"; };
+		8456CA1718DE953E000C1255 /* WDACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDACL.h; sourceTree = "<group>"; };
+		8456CA1818DE953E000C1255 /* WDACL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDACL.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +117,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8440A6FC18D3CAB3003AA472 /* SystemConfiguration.framework in Frameworks */,
+				8440A6FA18D3CAA7003AA472 /* StoreKit.framework in Frameworks */,
+				8440A6F818D3CA9E003AA472 /* Security.framework in Frameworks */,
+				8440A6F618D3CA94003AA472 /* QuartzCore.framework in Frameworks */,
+				8440A6F418D3CA89003AA472 /* MobileCoreServices.framework in Frameworks */,
+				8440A6F218D3CA78003AA472 /* libz.1.2.5.dylib in Frameworks */,
+				8440A6F018D3CA5F003AA472 /* CoreLocation.framework in Frameworks */,
 				843AB00C18D3A9BB006BE0FB /* CoreGraphics.framework in Frameworks */,
+				8440A6EE18D3CA47003AA472 /* CFNetwork.framework in Frameworks */,
+				8440A6EC18D3CA38003AA472 /* AudioToolbox.framework in Frameworks */,
 				843AB00E18D3A9BB006BE0FB /* UIKit.framework in Frameworks */,
+				843AB04218D3C4F4006BE0FB /* Parse.framework in Frameworks */,
 				843AB00A18D3A9BB006BE0FB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +149,7 @@
 		843AAFFD18D3A9BB006BE0FB = {
 			isa = PBXGroup;
 			children = (
+				8446BBE118DEE37D00819478 /* Assets */,
 				843AB00F18D3A9BB006BE0FB /* WhoDunnit */,
 				843AB02E18D3A9BB006BE0FB /* WhoDunnitTests */,
 				843AB00818D3A9BB006BE0FB /* Frameworks */,
@@ -101,6 +169,16 @@
 		843AB00818D3A9BB006BE0FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8440A6FB18D3CAB3003AA472 /* SystemConfiguration.framework */,
+				8440A6F918D3CAA7003AA472 /* StoreKit.framework */,
+				8440A6F718D3CA9E003AA472 /* Security.framework */,
+				8440A6F518D3CA94003AA472 /* QuartzCore.framework */,
+				8440A6F318D3CA89003AA472 /* MobileCoreServices.framework */,
+				8440A6F118D3CA78003AA472 /* libz.1.2.5.dylib */,
+				8440A6EF18D3CA5F003AA472 /* CoreLocation.framework */,
+				8440A6ED18D3CA47003AA472 /* CFNetwork.framework */,
+				8440A6EB18D3CA38003AA472 /* AudioToolbox.framework */,
+				843AB04118D3C4F4006BE0FB /* Parse.framework */,
 				843AB00918D3A9BB006BE0FB /* Foundation.framework */,
 				843AB00B18D3A9BB006BE0FB /* CoreGraphics.framework */,
 				843AB00D18D3A9BB006BE0FB /* UIKit.framework */,
@@ -115,9 +193,13 @@
 				843AB01818D3A9BB006BE0FB /* WDAppDelegate.h */,
 				843AB01918D3A9BB006BE0FB /* WDAppDelegate.m */,
 				843AB01B18D3A9BB006BE0FB /* Main.storyboard */,
-				843AB01E18D3A9BB006BE0FB /* WDViewController.h */,
-				843AB01F18D3A9BB006BE0FB /* WDViewController.m */,
 				843AB02118D3A9BB006BE0FB /* Images.xcassets */,
+				8456CA0D18DCEE6C000C1255 /* Login */,
+				8440A6FD18D3D298003AA472 /* Lists */,
+				8440A70118D3D2D5003AA472 /* Items */,
+				8446BBE918DEE51B00819478 /* List Members */,
+				8440A70C18D525ED003AA472 /* Model */,
+				8456CA1A18DE9544000C1255 /* Roles & ACLs */,
 				843AB01018D3A9BB006BE0FB /* Supporting Files */,
 			);
 			path = WhoDunnit;
@@ -150,6 +232,82 @@
 				843AB03118D3A9BB006BE0FB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8440A6FD18D3D298003AA472 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				843AB03E18D3AA7C006BE0FB /* WDListsTableViewController.h */,
+				843AB03F18D3AA7C006BE0FB /* WDListsTableViewController.m */,
+				8413A0C718D708A700E3C370 /* WDListsTableViewCell.h */,
+				8413A0C818D708A700E3C370 /* WDListsTableViewCell.m */,
+			);
+			name = Lists;
+			sourceTree = "<group>";
+		};
+		8440A70118D3D2D5003AA472 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				8440A6FE18D3D2C3003AA472 /* WDItemsViewController.h */,
+				8440A6FF18D3D2C3003AA472 /* WDItemsViewController.m */,
+				8440A70518D46716003AA472 /* WDItemsTableViewCell.h */,
+				8440A70618D46716003AA472 /* WDItemsTableViewCell.m */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		8440A70C18D525ED003AA472 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8440A70D18D5B060003AA472 /* WDList.h */,
+				8440A70E18D5B060003AA472 /* WDList.m */,
+				8440A70818D4F34E003AA472 /* WDItem.h */,
+				8440A70918D4F34E003AA472 /* WDItem.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8446BBE118DEE37D00819478 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8446BC3618E0621B00819478 /* Flaticon_13194-4.png */,
+				8446BC3718E0621B00819478 /* menu-25.png */,
+				8446BBEC18E0083E00819478 /* lists.png */,
+				8446BBEA18E0044B00819478 /* list.png */,
+				8446BBE418DEE3D200819478 /* group-25.png */,
+			);
+			name = Assets;
+			path = WhoDunnit/Assets;
+			sourceTree = "<group>";
+		};
+		8446BBE918DEE51B00819478 /* List Members */ = {
+			isa = PBXGroup;
+			children = (
+				8446BBF218E0617300819478 /* WDListMembersViewController.h */,
+				8446BBF318E0617300819478 /* WDListMembersViewController.m */,
+			);
+			name = "List Members";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		8456CA0D18DCEE6C000C1255 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8456CA1118DD27F9000C1255 /* WDLogInViewController.h */,
+				8456CA1218DD27F9000C1255 /* WDLogInViewController.m */,
+				8456CA1418DD2819000C1255 /* WDSignUpViewController.h */,
+				8456CA1518DD2819000C1255 /* WDSignUpViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		8456CA1A18DE9544000C1255 /* Roles & ACLs */ = {
+			isa = PBXGroup;
+			children = (
+				8456CA1718DE953E000C1255 /* WDACL.h */,
+				8456CA1818DE953E000C1255 /* WDACL.m */,
+			);
+			name = "Roles & ACLs";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +358,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = iDoodle;
 				TargetAttributes = {
+					843AB00518D3A9BB006BE0FB = {
+						DevelopmentTeam = 3REQJATS35;
+					};
 					843AB02618D3A9BB006BE0FB = {
 						TestTargetID = 843AB00518D3A9BB006BE0FB;
 					};
@@ -229,9 +390,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8446BC3818E0621B00819478 /* Flaticon_13194-4.png in Resources */,
+				8446BC3918E0621B00819478 /* menu-25.png in Resources */,
+				8446BBE518DEE3D200819478 /* group-25.png in Resources */,
+				8446BBEB18E0044B00819478 /* list.png in Resources */,
 				843AB02218D3A9BB006BE0FB /* Images.xcassets in Resources */,
 				843AB01418D3A9BB006BE0FB /* InfoPlist.strings in Resources */,
 				843AB01D18D3A9BB006BE0FB /* Main.storyboard in Resources */,
+				8446BBED18E0083E00819478 /* lists.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,9 +416,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				843AB02018D3A9BB006BE0FB /* WDViewController.m in Sources */,
+				8446BBF418E0617300819478 /* WDListMembersViewController.m in Sources */,
 				843AB01618D3A9BB006BE0FB /* main.m in Sources */,
+				8440A70718D46716003AA472 /* WDItemsTableViewCell.m in Sources */,
+				8456CA1918DE953E000C1255 /* WDACL.m in Sources */,
+				843AB04018D3AA7C006BE0FB /* WDListsTableViewController.m in Sources */,
+				8456CA1618DD2819000C1255 /* WDSignUpViewController.m in Sources */,
 				843AB01A18D3A9BB006BE0FB /* WDAppDelegate.m in Sources */,
+				8440A70A18D4F34E003AA472 /* WDItem.m in Sources */,
+				8440A70018D3D2C3003AA472 /* WDItemsViewController.m in Sources */,
+				8413A0C918D708A700E3C370 /* WDListsTableViewCell.m in Sources */,
+				8456CA1318DD27F9000C1255 /* WDLogInViewController.m in Sources */,
+				8440A70F18D5B060003AA472 /* WDList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,10 +552,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhoDunnit/WhoDunnit-Prefix.pch";
 				INFOPLIST_FILE = "WhoDunnit/WhoDunnit-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,10 +572,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WhoDunnit/WhoDunnit-Prefix.pch";
 				INFOPLIST_FILE = "WhoDunnit/WhoDunnit-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -457,6 +646,7 @@
 				843AB03A18D3A9BB006BE0FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		843AB03B18D3A9BB006BE0FB /* Build configuration list for PBXNativeTarget "WhoDunnitTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +655,7 @@
 				843AB03D18D3A9BB006BE0FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

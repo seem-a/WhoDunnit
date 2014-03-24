@@ -10,7 +10,17 @@
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
+#define CELL_IDENTIFIER @"ListCell"
+#define ITEMS_SEGUE @"Items Segue"
+#define LISTMEMBERS_SEGUE @"ListMembers Segue"
+#define LAST_VISITED_LIST @"LastVisitedList"
+#define LAST_VISITED_LISTID @"ListID"
+#define LAST_VISITED_LISTNAME @"ListName"
+#define LIST_MEMBERS @"ListMembers"
+#define LIST_ROLE_SUFFIX @"_Members"
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <Parse/Parse.h>
 #endif
