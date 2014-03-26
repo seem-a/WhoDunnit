@@ -34,30 +34,20 @@
 //    self.view.backgroundColor = [UIColor grayColor];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [self.navigationController setToolbarHidden:YES];
-
+    
+    self.delegate = self;
+    
     WDSignUpViewController *signUpViewController = [[WDSignUpViewController alloc] init];
     signUpViewController.delegate = self;
     signUpViewController.fields = PFSignUpFieldsDefault;
     self.signUpController = signUpViewController;
 
-    if (![PFUser currentUser])
+    if ([PFUser currentUser])
     {
-        //        WDLogInViewController *loginViewController = [[WDLogInViewController alloc] init];
-        //        loginViewController.facebookPermissions = @[@"user_about_me"];
-        //        loginViewController.delegate = self;
-        //        loginViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton  | PFLogInFieldsTwitter | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton | PFLogInFieldsDismissButton;
-        //
-        //        WDSignUpViewController *signUpViewController = [[WDSignUpViewController alloc] init];
-        //        signUpViewController.delegate = self;
-        //        signUpViewController.fields = PFSignUpFieldsDefault;
-        //        loginViewController.signUpController = signUpViewController;
-        //
-        //        [self presentViewController:loginViewController animated:YES completion:NULL];
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        currentInstallation[@"user"] = [PFUser currentUser];
+        [currentInstallation saveInBackground];
         
-//        [self performSegueWithIdentifier:@"Login Segue" sender:self];
-    }
-    else
-    {
         [self presentListsViewController:[PFUser currentUser]];
     }
 }
@@ -114,7 +104,9 @@
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
-    NSLog(@"Failed to log in...");
+    NSLog(@"Failed to log in...%@", error);
+    [[[UIAlertView alloc] initWithTitle:@"Account Error" message:@"The username and password combination is incorrect" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+
 }
 
 // Sent to the delegate when the log in screen is dismissed.

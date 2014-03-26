@@ -54,7 +54,7 @@
 {
     [super viewWillAppear:animated];
     
-    [self.navigationController setToolbarHidden:YES];
+//    [self.navigationController setToolbarHidden:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -133,10 +133,18 @@
                     }];
                 }
             }];
+            
+            [self initialisePendingInvitesForList:list.objectId];
         }
     }];
 }
 
+- (void)initialisePendingInvitesForList:(NSString *)listID
+{
+    PFObject *pendingInvite = [PFObject objectWithClassName:PENDING_INVITES];
+    pendingInvite[@"ListID"] = listID;
+    [pendingInvite saveEventually];
+}
 
 - (void)reloadListsForUser:(PFUser *)user
 {
@@ -161,6 +169,12 @@
     [newListAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     [newListAlertView show];
 }
+
+- (IBAction)logoutBarButtonItemPressed:(UIBarButtonItem *)sender
+{
+    [[[UIAlertView alloc] initWithTitle:@"Logout?" message:@"Are you sure you want to logout?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil] show];
+}
+
 
 #pragma mark WDListsTableViewCellDelegate
 - (void)listDeleted:(WDList *)list
@@ -201,10 +215,19 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        NSString *listName = [alertView textFieldAtIndex:0].text;
-        [self saveList:listName andUser:self.user];
-        [self reloadListsForUser:self.user];
+    if ([alertView.title isEqualToString: @"Enter new list name"]) {
+        if (buttonIndex == 1) {
+            NSString *listName = [alertView textFieldAtIndex:0].text;
+            [self saveList:listName andUser:self.user];
+            [self reloadListsForUser:self.user];
+        }
+    }
+    else if ([alertView.title isEqualToString:@"Logout?"])
+    {
+        if (buttonIndex == 1) {
+            [PFUser logOut];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 

@@ -18,6 +18,8 @@
 #define LAST_VISITED_LISTNAME @"ListName"
 #define LIST_MEMBERS @"ListMembers"
 #define LIST_ROLE_SUFFIX @"_Members"
+#define PENDING_INVITES @"PendingInvites"
+#define USER_EMAIL @"UserEmail"
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>

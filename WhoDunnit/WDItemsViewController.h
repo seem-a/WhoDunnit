@@ -11,7 +11,6 @@
 
 @interface WDItemsViewController : UIViewController
 
-//@property (strong, nonatomic) NSString *listName;
-//@property (strong, nonatomic) NSString *listObjectID;
 @property (strong, nonatomic) WDList *list;
+
 @end

@@ -46,7 +46,9 @@
 //    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:238.0/255.0 green:233.0/255.0 blue:233.0/255.0 alpha:1.0];
 //    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:193.0/255.0 green:255.0/255.0 blue:193.0/255.0 alpha:1.0];
 //    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:191.0/255.0 green:239.0/255.0 blue:255.0/255.0 alpha:1.0];
-    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:198.0/255.0 green:226.0/255.0 blue:255.0/255.0 alpha:1.0];
+
+    
+//    self.tableView.backgroundColor = [[UIColor alloc] initWithRed:198.0/255.0 green:226.0/255.0 blue:255.0/255.0 alpha:1.0];
     
     //pull-to-refresh control
     UITableViewController *tableViewController = [[UITableViewController alloc] init];

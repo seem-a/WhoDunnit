@@ -36,7 +36,6 @@
 		8440A70718D46716003AA472 /* WDItemsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A70618D46716003AA472 /* WDItemsTableViewCell.m */; };
 		8440A70A18D4F34E003AA472 /* WDItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A70918D4F34E003AA472 /* WDItem.m */; };
 		8440A70F18D5B060003AA472 /* WDList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440A70E18D5B060003AA472 /* WDList.m */; };
-		8446BBE518DEE3D200819478 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BBE418DEE3D200819478 /* group-25.png */; };
 		8446BBEB18E0044B00819478 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BBEA18E0044B00819478 /* list.png */; };
 		8446BBED18E0083E00819478 /* lists.png in Resources */ = {isa = PBXBuildFile; fileRef = 8446BBEC18E0083E00819478 /* lists.png */; };
 		8446BBF418E0617300819478 /* WDListMembersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446BBF318E0617300819478 /* WDListMembersViewController.m */; };
@@ -45,6 +44,7 @@
 		8456CA1318DD27F9000C1255 /* WDLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1218DD27F9000C1255 /* WDLogInViewController.m */; };
 		8456CA1618DD2819000C1255 /* WDSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1518DD2819000C1255 /* WDSignUpViewController.m */; };
 		8456CA1918DE953E000C1255 /* WDACL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1818DE953E000C1255 /* WDACL.m */; };
+		84BA742818E06A4F005BAD88 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA742718E06A4F005BAD88 /* group-25.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,6 @@
 		8440A70918D4F34E003AA472 /* WDItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDItem.m; sourceTree = "<group>"; };
 		8440A70D18D5B060003AA472 /* WDList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDList.h; sourceTree = "<group>"; };
 		8440A70E18D5B060003AA472 /* WDList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDList.m; sourceTree = "<group>"; };
-		8446BBE418DEE3D200819478 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "../../../../iOS7_icons/PNG/Users/group/group-25.png"; sourceTree = "<group>"; };
 		8446BBEA18E0044B00819478 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = WhoDunnit/list.png; sourceTree = SOURCE_ROOT; };
 		8446BBEC18E0083E00819478 /* lists.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lists.png; path = WhoDunnit/lists.png; sourceTree = SOURCE_ROOT; };
 		8446BBF218E0617300819478 /* WDListMembersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDListMembersViewController.h; path = WhoDunnit/WDListMembersViewController.h; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		8456CA1518DD2819000C1255 /* WDSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSignUpViewController.m; sourceTree = "<group>"; };
 		8456CA1718DE953E000C1255 /* WDACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDACL.h; sourceTree = "<group>"; };
 		8456CA1818DE953E000C1255 /* WDACL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDACL.m; sourceTree = "<group>"; };
+		84BA742718E06A4F005BAD88 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "WhoDunnit/group-25.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,11 +270,11 @@
 		8446BBE118DEE37D00819478 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				84BA742718E06A4F005BAD88 /* group-25.png */,
 				8446BC3618E0621B00819478 /* Flaticon_13194-4.png */,
 				8446BC3718E0621B00819478 /* menu-25.png */,
 				8446BBEC18E0083E00819478 /* lists.png */,
 				8446BBEA18E0044B00819478 /* list.png */,
-				8446BBE418DEE3D200819478 /* group-25.png */,
 			);
 			name = Assets;
 			path = WhoDunnit/Assets;
@@ -392,8 +392,8 @@
 			files = (
 				8446BC3818E0621B00819478 /* Flaticon_13194-4.png in Resources */,
 				8446BC3918E0621B00819478 /* menu-25.png in Resources */,
-				8446BBE518DEE3D200819478 /* group-25.png in Resources */,
 				8446BBEB18E0044B00819478 /* list.png in Resources */,
+				84BA742818E06A4F005BAD88 /* group-25.png in Resources */,
 				843AB02218D3A9BB006BE0FB /* Images.xcassets in Resources */,
 				843AB01418D3A9BB006BE0FB /* InfoPlist.strings in Resources */,
 				843AB01D18D3A9BB006BE0FB /* Main.storyboard in Resources */,
@@ -552,8 +552,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -572,8 +572,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
