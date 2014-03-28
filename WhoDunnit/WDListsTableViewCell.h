@@ -11,7 +11,7 @@
 
 @protocol WDListsTableViewCellDelegate <NSObject>
 
--(void) listDeleted:(WDList *)list;
+- (void)leaveList:(WDList *)list;
 
 @end
 

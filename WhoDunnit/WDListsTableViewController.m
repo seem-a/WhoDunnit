@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.hidesBackButton = YES;
 
@@ -41,7 +42,7 @@
     self.navigationItem.title = @"LISTS";
     [self.tableView registerClass:[WDListsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
 //    [self presentLastVisitedList];
-    [self reloadListsForUser:self.user];
+    [self reloadUsersLists];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -81,62 +82,76 @@
         if ([self listExists:list.listID]) {
             [self performSegueWithIdentifier:ITEMS_SEGUE sender:list];
         }
-        else
-        {
-            [self reloadListsForUser:self.user];
-        }
+        else [self reloadUsersLists];
     }
-    else
-    {
-        [self reloadListsForUser:self.user];
-    }
+    else [self reloadUsersLists];
 }
 
 - (BOOL)listExists:(NSString *)listID
 {
     PFQuery *query = [PFQuery queryWithClassName:@"List"];
     PFObject *object = [query getObjectWithId:listID];
-    if (object) {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
+    if (object) return YES;
+    else return NO;
 }
-- (void)saveList:(NSString *)listName andUser:(PFUser *)user
+- (void)addList:(NSString *)listName forUser:(PFUser *)user
 {
     PFObject *list = [PFObject objectWithClassName:@"List"];
     list[@"Name"] = listName;
-    [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error)
-        {
-            NSLog(@"Failed to add list %@: %@", listName, error);
-        }
-        else if (succeeded)
-        {
-            PFRole *role = [PFRole roleWithName:[list.objectId stringByAppendingString:LIST_ROLE_SUFFIX] acl:[WDACL roleACL]];
-            [role.users addObject:user];
-            [role saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (error)
-                {
-                    NSLog(@"Failed to create role %@ for list %@: %@", role.name, listName, error);
-                }
-                else if (succeeded)
-                {
-                    list.ACL = [WDACL listACL:role];
-                    [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (error)
-                        {
-                            NSLog(@"Failed to create listACL for list %@: %@", listName, error);
-                        }
-                    }];
-                }
-            }];
-            
-            [self initialisePendingInvitesForList:list.objectId];
+    if ([list save])
+    {
+        [self reloadUsersLists];
+        
+        PFRole *role = [PFRole roleWithName:[list.objectId stringByAppendingString:LIST_ROLE_SUFFIX] acl:[WDACL roleACL]];
+        [role.users addObject:user];
+        [role saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (error)
+            {
+                NSLog(@"Failed to create role %@ for list %@: %@", role.name, listName, error);
+            }
+            else if (succeeded)
+            {
+                list.ACL = [WDACL listACL:role];
+                [list saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (error)
+                    {
+                        NSLog(@"Failed to create listACL for list %@: %@", listName, error);
+                    }
+                }];
+            }
+        }];
+        
+        [self initialisePendingInvitesForList:list.objectId];
+    }
+}
+
+- (void)deleteList:(WDList *)list
+{
+    PFObject *object = [PFObject objectWithoutDataWithClassName:@"List" objectId:list.listID];
+    if ([object delete]) [self reloadUsersLists];
+    else NSLog(@"Failed to delete list: %@", list.name);
+}
+
+-(void)deleteItems:(WDList *)list
+{
+    PFQuery *query = [PFQuery queryWithClassName:@"Item"];
+    [query whereKey:@"ListID" equalTo:list.listID];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                [object deleteEventually];
+            }
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    
+}
+
+- (void)leaveRole:(PFRole *)role
+{
+    [role.users removeObject:self.user];
+    [role saveEventually];
 }
 
 - (void)initialisePendingInvitesForList:(NSString *)listID
@@ -146,7 +161,28 @@
     [pendingInvite saveEventually];
 }
 
-- (void)reloadListsForUser:(PFUser *)user
+-(void)deletePendingInvites:(WDList *)list
+{
+    PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
+    [query whereKey:@"ListID" equalTo:list.listID];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (error) {
+            NSLog(@"Failed to retrieve PendingInvites for list %@: %@", list.listID, error);
+        }
+        else if (object) {
+            [object deleteEventually];
+        }
+    }];
+ }
+
+-(BOOL)IsLastMember:(PFRole *)role
+{
+    PFQuery *usersQuery = [role.users query];
+    if ([[usersQuery findObjects] count] > 1) return NO;
+    else return YES;
+}
+
+- (void)reloadUsersLists
 {
     PFQuery *queryForLists = [PFQuery queryWithClassName:@"List"];
     [queryForLists findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -155,8 +191,6 @@
             [self.tableView reloadData];
         }
     }];
-    
-    [self.refreshControl endRefreshing];
 }
 
 
@@ -177,38 +211,22 @@
 
 
 #pragma mark WDListsTableViewCellDelegate
-- (void)listDeleted:(WDList *)list
+- (void)leaveList:(WDList *)list
 {
-    [self deleteItemsForList:list];
+    NSString *roleName = [list.listID stringByAppendingString:LIST_ROLE_SUFFIX];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"List"];
-    [query getObjectInBackgroundWithId:list.listID block:^(PFObject *list, NSError *error) {
-        [list deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [self reloadListsForUser:self.user];
-            }
-            else if (error) {
-                NSLog(@"List delete failed: %@", error);
-            }
-        }];
-    }];     
+    PFQuery *roleQuery = [PFRole query];
+    [roleQuery whereKey:@"name" equalTo:roleName];
+    PFRole *role = (PFRole *)[roleQuery getFirstObject];
     
-}
 
--(void)deleteItemsForList:(WDList *)list
-{
-    PFQuery *query = [PFQuery queryWithClassName:@"Item"];
-    [query whereKey:@"ListID" equalTo:list.listID];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                [object deleteEventually];
-            }
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
+    if ([self IsLastMember:role]) {
+        [self deleteList:list];
+        [self deleteItems:list];
+        [self deletePendingInvites:list];
+        [role deleteEventually];
+    }
+    else [self leaveRole:role];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -218,8 +236,8 @@
     if ([alertView.title isEqualToString: @"Enter new list name"]) {
         if (buttonIndex == 1) {
             NSString *listName = [alertView textFieldAtIndex:0].text;
-            [self saveList:listName andUser:self.user];
-            [self reloadListsForUser:self.user];
+            [self addList:listName forUser:self.user];
+            [self reloadUsersLists];
         }
     }
     else if ([alertView.title isEqualToString:@"Logout?"])
@@ -279,9 +297,14 @@
     {
         if ([cell isKindOfClass:[WDListsTableViewCell class]])
         {
-            [self listDeleted:((WDListsTableViewCell *)cell).list];
+            [self leaveList:((WDListsTableViewCell *)cell).list];
         }
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Leave";
 }
 
 #pragma mark - Navigation

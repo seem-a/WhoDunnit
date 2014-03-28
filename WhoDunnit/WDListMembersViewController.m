@@ -106,11 +106,18 @@
     PFQuery *pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"user" matchesQuery:userQuery];
     
+//    PFObject *installedUser = [pushQuery getFirstObject];
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          pushMessage, @"alert",
+                          @"Increment", @"badge", //TODO remove badge once invite seen
+                          nil];
     // Send push notification to query
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:pushQuery]; // Set our Installation query
-    [push setMessage:pushMessage];
+//    [push setMessage:pushMessage];
+    [push setData:data];
     [push sendPushInBackground];
+
     
     [self savePendingInvite:emailAddress];
 }
@@ -128,7 +135,7 @@
             [object save];
             
             self.pendingInvites = (NSArray *)object[USER_EMAIL];
-                [self.tableView reloadData];
+            [self.tableView reloadData];
         }
     }];
     

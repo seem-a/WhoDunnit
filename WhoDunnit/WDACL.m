@@ -15,6 +15,7 @@
     //Readonly privileges.
     PFACL *roleACL = [PFACL ACL];
     [roleACL setPublicReadAccess:YES];
+    [roleACL setPublicWriteAccess:YES];
     
     return roleACL;
 }

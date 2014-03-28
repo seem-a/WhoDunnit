@@ -33,7 +33,7 @@
     
 //    self.view.backgroundColor = [UIColor grayColor];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self.navigationController setToolbarHidden:YES];
+    [self.navigationController setToolbarHidden:YES  ];
     
     self.delegate = self;
     
@@ -54,8 +54,8 @@
 
 - (void)viewDidDisappear: (BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self.navigationController setToolbarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [self.navigationController setToolbarHidden:NO];
 
     [super viewDidDisappear:animated];
 }
@@ -170,6 +170,7 @@
     else if ([segue.destinationViewController isKindOfClass:[WDListsTableViewController class]]) {
         WDListsTableViewController *listsViewController = (WDListsTableViewController *)segue.destinationViewController;
         listsViewController.user = [PFUser currentUser];
+        [self.navigationController setToolbarHidden:NO];
     }
 }
 
