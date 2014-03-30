@@ -46,6 +46,7 @@
 		8456CA1618DD2819000C1255 /* WDSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1518DD2819000C1255 /* WDSignUpViewController.m */; };
 		8456CA1918DE953E000C1255 /* WDACL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456CA1818DE953E000C1255 /* WDACL.m */; };
 		845815E218E7B5D2000DFDAD /* WDInvitationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845815E118E7B5D2000DFDAD /* WDInvitationsTableViewCell.m */; };
+		849CBEE918E819B5005C9DAA /* WhoDunnit.png in Resources */ = {isa = PBXBuildFile; fileRef = 849CBEE818E819B5005C9DAA /* WhoDunnit.png */; };
 		84BA742818E06A4F005BAD88 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA742718E06A4F005BAD88 /* group-25.png */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		8456CA1818DE953E000C1255 /* WDACL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDACL.m; sourceTree = "<group>"; };
 		845815E018E7B5D2000DFDAD /* WDInvitationsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDInvitationsTableViewCell.h; sourceTree = "<group>"; };
 		845815E118E7B5D2000DFDAD /* WDInvitationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDInvitationsTableViewCell.m; sourceTree = "<group>"; };
+		849CBEE818E819B5005C9DAA /* WhoDunnit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WhoDunnit.png; path = WhoDunnit/WhoDunnit.png; sourceTree = SOURCE_ROOT; };
 		84BA742718E06A4F005BAD88 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "WhoDunnit/group-25.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -288,6 +290,7 @@
 		8446BBE118DEE37D00819478 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				849CBEE818E819B5005C9DAA /* WhoDunnit.png */,
 				84BA742718E06A4F005BAD88 /* group-25.png */,
 				8446BC3618E0621B00819478 /* Flaticon_13194-4.png */,
 				8446BC3718E0621B00819478 /* menu-25.png */,
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8446BC3818E0621B00819478 /* Flaticon_13194-4.png in Resources */,
+				849CBEE918E819B5005C9DAA /* WhoDunnit.png in Resources */,
 				8446BC3918E0621B00819478 /* menu-25.png in Resources */,
 				8446BBEB18E0044B00819478 /* list.png in Resources */,
 				84BA742818E06A4F005BAD88 /* group-25.png in Resources */,

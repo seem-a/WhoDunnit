@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *itemTextField;
 @property (strong, nonatomic) IBOutlet UIRefreshControl *refreshControl;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *invitationsBarButton;
 
 @end
 
@@ -72,6 +73,17 @@
     [super viewWillAppear:animated];
     self.navigationItem.title = self.list.name;
     [self.navigationController setToolbarHidden:NO];
+    
+    [super viewWillAppear:animated];
+    
+    if (self.invitationsCount > 0) {
+        self.invitationsBarButton.title = [[[NSNumber numberWithInt:self.invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
+    }
+    else
+    {
+        self.invitationsBarButton.title = @"";
+        self.invitationsBarButton.enabled = NO;
+    }
 
     [self registerForKeyboardNotifications];
 }
@@ -183,6 +195,9 @@
     }
 }
 
+
+- (IBAction)invitationsBarButton:(UIBarButtonItem *)sender {
+}
 
 # pragma mark TextField animations
 
@@ -352,6 +367,7 @@
         {
             WDListMembersViewController *targetViewController = segue.destinationViewController;
             targetViewController.list = self.list;
+            targetViewController.invitationsCount = self.invitationsCount;
         }
     }
 }

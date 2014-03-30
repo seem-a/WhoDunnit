@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableArray *members;
 @property (strong, nonatomic) NSMutableArray *pendingInvites;
 @property (strong, nonatomic) IBOutlet UIView *inviteUserView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *invitationsBarButton;
 
 @end
 
@@ -45,6 +46,17 @@
 
     [self getListMembers];
     [self getPendingInvites];
+    
+    [super viewWillAppear:animated];
+    
+    if (self.invitationsCount > 0) {
+        self.invitationsBarButton.title = [[[NSNumber numberWithInt:self.invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
+    }
+    else
+    {
+        self.invitationsBarButton.title = @"";
+        self.invitationsBarButton.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning

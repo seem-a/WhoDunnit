@@ -25,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCo-Yn-od9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="854" y="-75"/>
+            <point key="canvasLocation" x="789" y="-75"/>
         </scene>
         <!--Lists Table View Controller-->
         <scene sceneID="5Pm-sd-Zun">
@@ -54,6 +54,11 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
+                        <barButtonItem title="Invitations" id="Qbl-g6-1Qd">
+                            <connections>
+                                <action selector="invitationBarButtonPressed:" destination="dUK-4R-UHb" id="Scr-MK-FXw"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ovX-ZJ-9pr"/>
                         <barButtonItem title="Logout" id="4mM-QD-CaQ">
                             <connections>
@@ -68,10 +73,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="invitationsBarButton" destination="Qbl-g6-1Qd" id="zel-n0-pm6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUP-de-Bpm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1286" y="-75"/>
+            <point key="canvasLocation" x="1264" y="-77"/>
         </scene>
         <!--Items View Controller-->
         <scene sceneID="S1N-iP-Qb7">
@@ -104,7 +112,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem image="menu-25.png" id="Vo0-ry-su8"/>
+                        <barButtonItem title="Invitations" id="Vo0-ry-su8">
+                            <connections>
+                                <action selector="invitationsBarButton:" destination="d6e-Yn-XSu" id="Hhc-y8-4vJ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="azw-rw-wYB"/>
                         <barButtonItem image="group-25.png" id="fNn-sX-P94">
                             <connections>
@@ -120,6 +132,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="invitationsBarButton" destination="Vo0-ry-su8" id="jP4-3V-h7T"/>
                         <outlet property="tableView" destination="fy8-Vj-m1v" id="N0G-ka-h44"/>
                     </connections>
                 </viewController>
@@ -202,27 +215,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Invite" id="KFa-7Y-984">
-                            <connections>
-                                <action selector="inviteBarButtonItemPressed:" destination="dkX-k5-iVV" id="408-yc-e6X"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="erD-Be-roG"/>
                         <barButtonItem title="Invitations" id="Wcy-Pw-z2C">
                             <connections>
                                 <segue destination="uag-hn-X7d" kind="push" id="jbb-c9-qnb"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="erD-Be-roG"/>
+                        <barButtonItem title="Invite" id="KFa-7Y-984">
+                            <connections>
+                                <action selector="inviteBarButtonItemPressed:" destination="dkX-k5-iVV" id="408-yc-e6X"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="S6a-cS-VXo"/>
                     <connections>
+                        <outlet property="invitationsBarButton" destination="Wcy-Pw-z2C" id="Tp2-Yp-RQa"/>
                         <outlet property="inviteUserView" destination="Qof-f9-a1K" id="9J0-RA-eES"/>
                         <outlet property="tableView" destination="0bI-Om-6NV" id="ZVI-5A-Ilt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ej-Un-p4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2179" y="-77"/>
+            <point key="canvasLocation" x="2209" y="-77"/>
         </scene>
         <!--Invitations View Controller-->
         <scene sceneID="dbG-3S-VCl">
@@ -293,7 +307,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56R-d5-Ulf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2566" y="-77"/>
+            <point key="canvasLocation" x="2638" y="-77"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9xL-CM-tgf">
@@ -320,7 +334,6 @@
     </scenes>
     <resources>
         <image name="group-25.png" width="25" height="25"/>
-        <image name="menu-25.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

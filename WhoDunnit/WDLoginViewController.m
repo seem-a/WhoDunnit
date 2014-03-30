@@ -169,18 +169,25 @@
         currentInstallation[@"user"] = [PFUser currentUser];
         [currentInstallation saveInBackground];
         
-
-        
         WDListsTableViewController *listsViewController = (WDListsTableViewController *)segue.destinationViewController;
         listsViewController.user = [PFUser currentUser];
+        listsViewController.invitationsCount = [self getInvitationsCount];
         [self.navigationController setToolbarHidden:NO];
     }
 }
 
-
 - (void) presentListsViewController:(PFUser *)user
 {
     [self performSegueWithIdentifier:@"Lists Segue" sender:self];
+}
+
+#pragma mark Helpers
+
+- (int)getInvitationsCount
+{
+    PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
+    [query whereKey:@"To" equalTo:[PFUser currentUser].email];
+    return [query countObjects];
 }
 
 @end

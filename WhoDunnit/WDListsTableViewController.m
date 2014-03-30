@@ -17,6 +17,7 @@
 @interface WDListsTableViewController () <UIAlertViewDelegate, UITableViewDelegate, WDListsTableViewCellDelegate>
 
 @property (strong, nonatomic) NSMutableArray *lists;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *invitationsBarButton;
 
 @end
 
@@ -54,8 +55,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    [self.navigationController setToolbarHidden:YES];
+
+    if (self.invitationsCount > 0) {
+        self.invitationsBarButton.title = [[[NSNumber numberWithInt:self.invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
+    }
+    else
+    {
+        self.invitationsBarButton.title = @"";
+        self.invitationsBarButton.enabled = NO;
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -121,7 +129,6 @@
             }
         }];
         
-//        [self initialisePendingInvitesForList:list.objectId];
     }
 }
 
@@ -151,15 +158,8 @@
 - (void)leaveRole:(PFRole *)role
 {
     [role.users removeObject:self.user];
-    [role saveEventually];
+    [role save];
 }
-
-//- (void)initialisePendingInvitesForList:(NSString *)listID
-//{
-//    PFObject *pendingInvite = [PFObject objectWithClassName:PENDING_INVITES];
-//    pendingInvite[@"ListID"] = listID;
-//    [pendingInvite saveEventually];
-//}
 
 -(void)deletePendingInvites:(WDList *)list
 {
@@ -209,6 +209,8 @@
     [[[UIAlertView alloc] initWithTitle:@"Logout?" message:@"Are you sure you want to logout?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil] show];
 }
 
+- (IBAction)invitationBarButtonPressed:(UIBarButtonItem *)sender {
+}
 
 #pragma mark WDListsTableViewCellDelegate
 - (void)leaveList:(WDList *)list
@@ -219,14 +221,18 @@
     [roleQuery whereKey:@"name" equalTo:roleName];
     PFRole *role = (PFRole *)[roleQuery getFirstObject];
     
-
     if ([self IsLastMember:role]) {
         [self deleteList:list];
         [self deleteItems:list];
         [self deletePendingInvites:list];
         [role deleteEventually];
     }
-    else [self leaveRole:role];
+    else
+    {
+        [self leaveRole:role];
+    }
+    [self.tableView reloadData];
+
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -325,6 +331,7 @@
             
             WDItemsViewController *targetViewController = segue.destinationViewController;
             targetViewController.list = [[WDList alloc] initWithName:pfObject[@"Name"] andListID:pfObject.objectId];
+            targetViewController.invitationsCount = self.invitationsCount;
         }
     }
 }

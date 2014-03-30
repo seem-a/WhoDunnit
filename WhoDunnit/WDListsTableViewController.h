@@ -11,5 +11,6 @@
 @interface WDListsTableViewController : UITableViewController
 
 @property (strong, nonatomic) PFUser *user;
+@property (nonatomic) int invitationsCount;
 
 @end
