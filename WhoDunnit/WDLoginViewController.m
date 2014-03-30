@@ -33,7 +33,7 @@
     
 //    self.view.backgroundColor = [UIColor grayColor];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [self.navigationController setToolbarHidden:YES  ];
+    [self.navigationController setToolbarHidden:YES];
     
     self.delegate = self;
     
@@ -44,18 +44,14 @@
 
     if ([PFUser currentUser])
     {
-        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        currentInstallation[@"user"] = [PFUser currentUser];
-        [currentInstallation saveInBackground];
-        
         [self presentListsViewController:[PFUser currentUser]];
     }
 }
 
 - (void)viewDidDisappear: (BOOL)animated
 {
-//    [self.navigationController setNavigationBarHidden:NO animated:animated];
-//    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setToolbarHidden:NO];
 
     [super viewDidDisappear:animated];
 }
@@ -168,6 +164,13 @@
         loginViewController.signUpController = signUpViewController;
     }
     else if ([segue.destinationViewController isKindOfClass:[WDListsTableViewController class]]) {
+        
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        currentInstallation[@"user"] = [PFUser currentUser];
+        [currentInstallation saveInBackground];
+        
+
+        
         WDListsTableViewController *listsViewController = (WDListsTableViewController *)segue.destinationViewController;
         listsViewController.user = [PFUser currentUser];
         [self.navigationController setToolbarHidden:NO];

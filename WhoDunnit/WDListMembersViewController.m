@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *members;
-@property (strong, nonatomic) NSArray *pendingInvites;
+@property (strong, nonatomic) NSMutableArray *pendingInvites;
 @property (strong, nonatomic) IBOutlet UIView *inviteUserView;
 
 @end
@@ -86,19 +86,30 @@
     }
 }
 
+//- (void)getPendingInvites_Old
+//{
+//    PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
+//    [query whereKey:@"ListID" equalTo:self.list.listID];
+//    PFObject *object = [query getFirstObject];
+//    self.pendingInvites = (NSArray *)[object objectForKey:USER_EMAIL];
+//}
+
 - (void)getPendingInvites
 {
+    self.pendingInvites = [[NSMutableArray alloc] init];
+
     PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
     [query whereKey:@"ListID" equalTo:self.list.listID];
-    PFObject *object = [query getFirstObject];
-    self.pendingInvites = (NSArray *)[object objectForKey:USER_EMAIL];
+    NSArray *objects = [query findObjects];
+    for (PFObject *object in objects) {
+        [self.pendingInvites addObject:object[@"To"]];
+    }
 }
 
 - (void)inviteUser:(NSString *)emailAddress toList:(WDList *)list
 {
-    NSString *pushMessage = [NSString stringWithFormat:@"You have been invited to a list '%@' by %@", list.name, [[PFUser currentUser] username]];
+    NSString *pushMessage = [NSString stringWithFormat:@"You have been invited to '%@' by %@", list.name, [[PFUser currentUser] username]];
 
-    // Find users near a given location
     PFQuery *userQuery = [PFUser query];
     [userQuery whereKey:@"email" equalTo:emailAddress];
     
@@ -106,40 +117,75 @@
     PFQuery *pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"user" matchesQuery:userQuery];
     
-//    PFObject *installedUser = [pushQuery getFirstObject];
     NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
                           pushMessage, @"alert",
-                          @"Increment", @"badge", //TODO remove badge once invite seen
+                          @"Increment", @"badge", //TODO: remove badge once invite seen
+                          [PFUser currentUser].username, @"Sender",
+                          list.listID, @"ListID",
+                          list.name, @"ListName",
                           nil];
-    // Send push notification to query
+
     PFPush *push = [[PFPush alloc] init];
-    [push setQuery:pushQuery]; // Set our Installation query
-//    [push setMessage:pushMessage];
+    [push setQuery:pushQuery];
     [push setData:data];
     [push sendPushInBackground];
 
-    
     [self savePendingInvite:emailAddress];
+
+//    TODO: send email if invitee not an existing user
+//    [pushQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!objects || objects.count == 0) {
+//            [self sendEmail:emailAddress];
+//        }
+//    }];
 }
 
-- (void)savePendingInvite:(NSString *)emailAddress
+//- (void)savePendingInvite_Old:(NSString *)emailAddress
+//{
+//    PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
+//    [query whereKey:@"ListID" equalTo:self.list.listID];
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        if (error) {
+//            NSLog(@"Failed to retrieve PendingInvites for list %@: %@", self.list.listID, error);
+//        }
+//        else if (object) {
+//            [object addUniqueObject:emailAddress forKey:USER_EMAIL];
+//            [object save];
+//            
+//            self.pendingInvites = (NSMutableArray *)object[USER_EMAIL];
+//            [self.tableView reloadData];
+//        }
+//    }];
+//}
+
+- (void) savePendingInvite:(NSString *)emailAddress
 {
     PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
     [query whereKey:@"ListID" equalTo:self.list.listID];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (error) {
-            NSLog(@"Failed to retrieve PendingInvites for list %@: %@", self.list.listID, error);
-        }
-        else if (object) {
-            [object addUniqueObject:emailAddress forKey:USER_EMAIL];
-            [object save];
+    [query whereKey:@"To" equalTo:emailAddress];
+    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+        if (!error) {
+            if (count == 0) {
+                PFObject *invite = [PFObject objectWithClassName:PENDING_INVITES];
+                invite[@"ListID"] = self.list.listID;
+                invite[@"To"] = emailAddress;
+                invite[@"From"] = [PFUser currentUser].username;
+                if ([invite save])
+                {
+                    [self getPendingInvites];
+                    [self.tableView reloadData];
+                }
+            }
             
-            self.pendingInvites = (NSArray *)object[USER_EMAIL];
-            [self.tableView reloadData];
+        } else {
+            NSLog(@"Unable to determine if invite to list %@ already sent to %@", self.list.listID, emailAddress);
         }
     }];
-    
+}
 
+- (void)sendEmail:(NSString *)emailAddress
+{
+    //TODO
 }
 
 #pragma mark UITableViewDataSource
@@ -197,16 +243,22 @@
         [self inviteUser:[alertView textFieldAtIndex:0].text toList:self.list];
     }
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UIBarButtonItem *newBackButton =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    [self.navigationItem setBackBarButtonItem:newBackButton];
 }
-*/
+
+#pragma mark IBActions
+
 - (IBAction)inviteBarButtonItemPressed:(UIBarButtonItem *)sender
 {
     UIAlertView *newListAlertView = [[UIAlertView alloc] initWithTitle:@"Enter email address of user" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Invite", nil];

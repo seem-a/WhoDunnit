@@ -39,7 +39,7 @@
     self.navigationItem.hidesBackButton = YES;
 
     [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"Courier" size:20.0f]}];
-    self.navigationItem.title = @"LISTS";
+    self.navigationItem.title = @"YOUR LISTS";
     [self.tableView registerClass:[WDListsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
 //    [self presentLastVisitedList];
     [self reloadUsersLists];
@@ -121,7 +121,7 @@
             }
         }];
         
-        [self initialisePendingInvitesForList:list.objectId];
+//        [self initialisePendingInvitesForList:list.objectId];
     }
 }
 
@@ -154,12 +154,12 @@
     [role saveEventually];
 }
 
-- (void)initialisePendingInvitesForList:(NSString *)listID
-{
-    PFObject *pendingInvite = [PFObject objectWithClassName:PENDING_INVITES];
-    pendingInvite[@"ListID"] = listID;
-    [pendingInvite saveEventually];
-}
+//- (void)initialisePendingInvitesForList:(NSString *)listID
+//{
+//    PFObject *pendingInvite = [PFObject objectWithClassName:PENDING_INVITES];
+//    pendingInvite[@"ListID"] = listID;
+//    [pendingInvite saveEventually];
+//}
 
 -(void)deletePendingInvites:(WDList *)list
 {
@@ -267,7 +267,6 @@
     WDListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
     
     PFObject *pfObject = self.lists[indexPath.row];
-//    PFACL *listACL = pfObject.ACL;
     WDList *list = [[WDList alloc] initWithName:pfObject[@"Name"] andListID:pfObject.objectId];
     cell.list = list;
     cell.textLabel.text = list.name;
@@ -313,7 +312,14 @@
 {
     if ([segue.identifier isEqualToString:ITEMS_SEGUE]) {
         if ([segue.destinationViewController isKindOfClass:[WDItemsViewController class]]) {
-            
+
+            UIBarButtonItem *newBackButton =
+            [[UIBarButtonItem alloc] initWithTitle:@""
+                                             style:UIBarButtonItemStyleBordered
+                                            target:nil
+                                            action:nil];
+            [[self navigationItem] setBackBarButtonItem:newBackButton];
+
             NSIndexPath *path = [self.tableView indexPathForSelectedRow];
             PFObject *pfObject = self.lists[path.row];
             
