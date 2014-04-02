@@ -20,7 +20,7 @@
 #define LIST_ROLE_SUFFIX @"_Members"
 #define PENDING_INVITES @"PendingInvites"
 #define USER_EMAIL @"UserEmail"
-
+extern int invitationsCount;
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>

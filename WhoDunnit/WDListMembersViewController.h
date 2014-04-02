@@ -12,6 +12,5 @@
 @interface WDListMembersViewController : UIViewController
 
 @property (strong, nonatomic) WDList *list;
-@property (nonatomic) int invitationsCount;
 
 @end

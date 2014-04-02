@@ -22,6 +22,7 @@
 @end
 
 @implementation WDListsTableViewController
+int invitationsCount;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -56,8 +57,8 @@
 {
     [super viewWillAppear:animated];
 
-    if (self.invitationsCount > 0) {
-        self.invitationsBarButton.title = [[[NSNumber numberWithInt:self.invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
+    if (invitationsCount > 0) {
+        self.invitationsBarButton.title = [[[NSNumber numberWithInt:invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
     }
     else
     {
@@ -331,7 +332,6 @@
             
             WDItemsViewController *targetViewController = segue.destinationViewController;
             targetViewController.list = [[WDList alloc] initWithName:pfObject[@"Name"] andListID:pfObject.objectId];
-            targetViewController.invitationsCount = self.invitationsCount;
         }
     }
 }

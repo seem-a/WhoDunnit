@@ -23,6 +23,7 @@
 @end
 
 @implementation WDItemsViewController
+int invitationsCount;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,8 +77,8 @@
     
     [super viewWillAppear:animated];
     
-    if (self.invitationsCount > 0) {
-        self.invitationsBarButton.title = [[[NSNumber numberWithInt:self.invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
+    if (invitationsCount > 0) {
+        self.invitationsBarButton.title = [[[NSNumber numberWithInt:invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
     }
     else
     {
@@ -299,7 +300,11 @@
 
 - (NSMutableAttributedString *)doneItem:(NSString *)text
 {
-    return [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSForegroundColorAttributeName:[[UIColor alloc] initWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0], NSStrikethroughStyleAttributeName:@1}];
+    return [[NSMutableAttributedString alloc]
+            initWithString:text
+            attributes:@{
+                         NSForegroundColorAttributeName:[[UIColor alloc] initWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0],
+                         NSStrikethroughStyleAttributeName:@1}];
 }
 
 #pragma mark - UITableViewDataDelegate protocol methods
@@ -367,7 +372,6 @@
         {
             WDListMembersViewController *targetViewController = segue.destinationViewController;
             targetViewController.list = self.list;
-            targetViewController.invitationsCount = self.invitationsCount;
         }
     }
 }

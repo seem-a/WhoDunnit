@@ -19,6 +19,7 @@
 @end
 
 @implementation WDListMembersViewController
+int invitationsCount;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,8 +50,8 @@
     
     [super viewWillAppear:animated];
     
-    if (self.invitationsCount > 0) {
-        self.invitationsBarButton.title = [[[NSNumber numberWithInt:self.invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
+    if (invitationsCount > 0) {
+        self.invitationsBarButton.title = [[[NSNumber numberWithInt:invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
     }
     else
     {

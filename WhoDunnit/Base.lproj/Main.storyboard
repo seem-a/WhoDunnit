@@ -57,6 +57,7 @@
                         <barButtonItem title="Invitations" id="Qbl-g6-1Qd">
                             <connections>
                                 <action selector="invitationBarButtonPressed:" destination="dUK-4R-UHb" id="Scr-MK-FXw"/>
+                                <segue destination="uag-hn-X7d" kind="push" id="sbd-sq-fAt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ovX-ZJ-9pr"/>
@@ -115,6 +116,7 @@
                         <barButtonItem title="Invitations" id="Vo0-ry-su8">
                             <connections>
                                 <action selector="invitationsBarButton:" destination="d6e-Yn-XSu" id="Hhc-y8-4vJ"/>
+                                <segue destination="uag-hn-X7d" kind="push" id="a4B-nG-L42"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="azw-rw-wYB"/>
@@ -340,4 +342,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="jbb-c9-qnb"/>
+    </inferredMetricsTieBreakers>
 </document>

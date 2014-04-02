@@ -5,16 +5,17 @@
 //  Created by me on 22/03/14.
 //  Copyright (c) 2014 iDoodle. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "WDLogInViewController.h"
 #import "WDSignUpViewController.h"
 #import "WDListsTableViewController.h"
 
 @interface WDLogInViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
-
+@property (nonatomic, strong) UIImageView *fieldsBackground;
 @end
 
 @implementation WDLogInViewController
+int invitationsCount;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,7 +62,96 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.delegate = self;
+    
+//    UIColor *dodgerBlue1 = [UIColor colorWithRed:30.0/255.0 green:144.0/255.0 blue:255.0/255.0 alpha:1.0];
+//    UIColor *seagreen4 = [UIColor colorWithRed:46.0/255.0 green:139.0/255.0 blue:87.0/255.0 alpha:1.0];
+    UIColor *indianred = [UIColor colorWithRed:176.0/255 green:23.0/255.0 blue:31.0/255 alpha:1.0];
+//    self.logInView.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WhoDunnit.png"]];
+//    self.logInView.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:201.0/255.0 blue:87.0/255.0 alpha:1.0]; //emeraldgreen
+//    self.logInView.backgroundColor = [UIColor colorWithRed:61.0/255.0 green:145.0/255.0 blue:64.0/255.0 alpha:1.0]; //cobaltgreen
+    self.logInView.backgroundColor = indianred;
+    self.logInView.dismissButton.hidden = YES;
+
+    [self.logInView.logo addSubview:[self getAppTitle]];
+    
 }
+
+
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+//    UIColor *dodgerBlue1 = [UIColor colorWithRed:30.0/255.0 green:144.0/255.0 blue:255.0/255.0 alpha:1.0];
+//    UIColor *slateGray1 = [UIColor colorWithRed:198.0/255.0 green:226.0/255.0 blue:255.0/255.0 alpha:1.0];
+    UIColor *indianred = [UIColor colorWithRed:176.0/255 green:23.0/255.0 blue:31.0/255 alpha:1.0];
+    UIFont * labelFont = [UIFont fontWithName:@"Helvetica-Light" size:20];
+    NSShadow *shadow = [[NSShadow alloc] init];
+
+    CGRect passwordFieldFrame = self.logInView.passwordField.frame;
+    [self.logInView.passwordField setFrame:CGRectMake(passwordFieldFrame.origin.x, passwordFieldFrame.origin.y + 5.0, passwordFieldFrame.size.width, passwordFieldFrame.size.height)];
+    
+    CGRect loginButtonFrame = self.logInView.logInButton.frame;
+    [self.logInView.logInButton setFrame:CGRectMake(loginButtonFrame.origin.x, loginButtonFrame.origin.y + 5.0, loginButtonFrame.size.width, loginButtonFrame.size.height)];
+    
+    
+    NSAttributedString *usernameAttributedString =
+    [[NSAttributedString alloc] initWithString:@"Username"                                                                                   attributes:@{                                                                                                NSFontAttributeName: labelFont,                                                                                            NSForegroundColorAttributeName : [UIColor lightTextColor],                                                                                                NSShadowAttributeName : shadow }];
+    
+    
+    self.logInView.usernameField.attributedPlaceholder = usernameAttributedString;
+    self.logInView.usernameField.textColor = indianred;
+    self.logInView.usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.logInView.usernameField.layer.borderColor = [indianred CGColor];
+    self.logInView.usernameField.layer.borderWidth = 1.5;
+    self.logInView.usernameField.layer.cornerRadius = 7.0f;
+    [self.logInView.usernameField setBackgroundColor:[UIColor whiteColor]];
+    
+  
+    NSAttributedString *passwordAttributedString =
+    [[NSAttributedString alloc] initWithString:@"Password"                                                                                   attributes:@{                                                                                                NSFontAttributeName: labelFont,                                                                                            NSForegroundColorAttributeName : [UIColor lightTextColor],                                                                                                NSShadowAttributeName : shadow }];
+    
+    self.logInView.passwordField.attributedPlaceholder = passwordAttributedString;
+    self.logInView.passwordField.textColor = indianred;
+    self.logInView.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.logInView.passwordField.layer.borderColor = [indianred CGColor];
+    self.logInView.passwordField.layer.borderWidth = 1.5;
+    self.logInView.passwordField.layer.cornerRadius = 7.0f;
+    [self.logInView.passwordField setBackgroundColor:[UIColor whiteColor]];
+    
+
+    
+    [self.logInView.logInButton setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal|UIControlStateSelected];
+//    [self.logInView.logInButton setImage:[[UIImage alloc] init] forState:UIControlStateNormal | UIControlStateSelected];
+//    [self.logInView.logInButton setBackgroundImage:[[UIImage alloc] init] forState:UIControlStateNormal | UIControlStateSelected];
+    
+//     self.logInView.passwordForgottenButton.hidden = YES;
+
+}
+
+- (UILabel *) getAppTitle
+{
+    UIColor *indianred = [UIColor colorWithRed:176.0/255 green:23.0/255.0 blue:31.0/255 alpha:1.0];
+
+    
+    NSAttributedString *attributedString =
+    [[NSAttributedString alloc] initWithString:@"Tick-it"                                                                                   attributes:@{                                                                                                NSFontAttributeName: [UIFont fontWithName:@"AppleSDGothicNeo-Thin" size:37],                                                                                            NSForegroundColorAttributeName : [UIColor whiteColor],                                                                                                NSShadowAttributeName : [[NSShadow alloc] init] }];
+    
+    CGRect prevFrame = self.logInView.logo.frame;
+//    NSLog(@"x: %f, y: %f, width: %f, height: %f", prevFrame.origin.x, prevFrame.origin.y, prevFrame.size.width, prevFrame.size.height);
+    UILabel *appTitle = [[UILabel alloc] initWithFrame:CGRectMake(prevFrame.origin.x, prevFrame.origin.y, prevFrame.size.width + 15.0, prevFrame.size.height + 10.0)];
+    appTitle.backgroundColor = indianred;
+    appTitle.textColor = [UIColor whiteColor];
+    appTitle.attributedText = attributedString;
+    
+    return appTitle;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -171,7 +261,8 @@
         
         WDListsTableViewController *listsViewController = (WDListsTableViewController *)segue.destinationViewController;
         listsViewController.user = [PFUser currentUser];
-        listsViewController.invitationsCount = [self getInvitationsCount];
+
+        invitationsCount = [self getInvitationsCount];
         [self.navigationController setToolbarHidden:NO];
     }
 }

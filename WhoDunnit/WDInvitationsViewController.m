@@ -18,6 +18,7 @@
 @end
 
 @implementation WDInvitationsViewController
+int invitationsCount;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -128,31 +129,10 @@
     
     NSDictionary *invitation = self.invitations[indexPath.row];
     [self.invitations removeObjectAtIndex:indexPath.row];
+    invitationsCount = [self.invitations count];
     [self.tableView reloadData];
-    [self addToRole:invitation];
     [self deletePendingInvite:invitation];
-    
-//    NSString *roleName = [invitation[@"ListID"] stringByAppendingString:LIST_ROLE_SUFFIX];
-//    
-//    PFQuery *roleQuery = [PFRole query];
-//    [roleQuery whereKey:@"name" equalTo:roleName];
-//    PFRole *role = (PFRole *)[roleQuery getFirstObject];
-//    [role.users addObject:[PFUser currentUser]];
-//    [role saveEventually];
-//    
-//    PFQuery *pendingInvitesQuery = [PFQuery queryWithClassName:PENDING_INVITES];
-//    [pendingInvitesQuery whereKey:@"ListID" equalTo:invitation[@"ListID"]];
-//    [pendingInvitesQuery whereKey:@"To" equalTo:invitation[@"To"]];
-//    [pendingInvitesQuery whereKey:@"From" equalTo:invitation[@"From"]];
-//    [pendingInvitesQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        if (!error) {
-//            [object deleteEventually];
-//        }
-//        else
-//        {
-//            NSLog(@"Failed to delete pending invite for list %@ to %@ from %@", invitation[@"ListID"], invitation[@"To"], invitation[@"From"]);
-//        }
-//    }];
+    [self addToRole:invitation];
 }
 
 -(void)rejectInvitation:(NSIndexPath *)indexPath
@@ -160,22 +140,10 @@
     NSLog(@"handling reject...");
     NSDictionary *invitation = self.invitations[indexPath.row];
     [self.invitations removeObjectAtIndex:indexPath.row];
+    invitationsCount = [self.invitations count];
     [self.tableView reloadData];
     [self deletePendingInvite:invitation];
 
-//    PFQuery *pendingInvitesQuery = [PFQuery queryWithClassName:PENDING_INVITES];
-//    [pendingInvitesQuery whereKey:@"ListID" equalTo:invitation[@"ListID"]];
-//    [pendingInvitesQuery whereKey:@"To" equalTo:invitation[@"To"]];
-//    [pendingInvitesQuery whereKey:@"From" equalTo:invitation[@"From"]];
-//    [pendingInvitesQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        if (!error) {
-//            [object deleteEventually];
-//        }
-//        else
-//        {
-//            NSLog(@"Failed to delete pending invite for list %@ to %@ from %@", invitation[@"ListID"], invitation[@"To"], invitation[@"From"]);
-//        }
-//    }];
 }
 
 /*
