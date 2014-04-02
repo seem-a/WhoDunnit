@@ -7,6 +7,7 @@
 //
 
 #import "WDListMembersViewController.h"
+#import "WDGlobal.h"
 
 @interface WDListMembersViewController () <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
@@ -99,14 +100,6 @@ int invitationsCount;
     }
 }
 
-//- (void)getPendingInvites_Old
-//{
-//    PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
-//    [query whereKey:@"ListID" equalTo:self.list.listID];
-//    PFObject *object = [query getFirstObject];
-//    self.pendingInvites = (NSArray *)[object objectForKey:USER_EMAIL];
-//}
-
 - (void)getPendingInvites
 {
     self.pendingInvites = [[NSMutableArray alloc] init];
@@ -153,23 +146,7 @@ int invitationsCount;
 //    }];
 }
 
-//- (void)savePendingInvite_Old:(NSString *)emailAddress
-//{
-//    PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
-//    [query whereKey:@"ListID" equalTo:self.list.listID];
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        if (error) {
-//            NSLog(@"Failed to retrieve PendingInvites for list %@: %@", self.list.listID, error);
-//        }
-//        else if (object) {
-//            [object addUniqueObject:emailAddress forKey:USER_EMAIL];
-//            [object save];
-//            
-//            self.pendingInvites = (NSMutableArray *)object[USER_EMAIL];
-//            [self.tableView reloadData];
-//        }
-//    }];
-//}
+
 
 - (void) savePendingInvite:(NSString *)emailAddress
 {
@@ -226,12 +203,18 @@ int invitationsCount;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) cell.textLabel.text = @"MEMBERS OF THIS LIST";
+        if (indexPath.row == 0) {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.attributedText = [self attributedString:@"MEMBERS OF THIS LIST"];
+        }
         else cell.textLabel.text = self.members[indexPath.row - 1];
     }
     else if (indexPath.section == 1) {
         if (indexPath.row == 0) ;
-        else if (indexPath.row == 1) cell.textLabel.text = @"PENDING INVITES";
+        else if (indexPath.row == 1) {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.attributedText = [self attributedString:@"PENDING INVITES"];
+        }
         else {
                 cell.textLabel.text = self.pendingInvites[indexPath.row - 2];
         }
@@ -279,4 +262,10 @@ int invitationsCount;
     [newListAlertView show];
 }
 
+#pragma mark Helpers
+
+-(NSAttributedString *)attributedString:(NSString *)text
+{
+    return [[NSAttributedString alloc] initWithString:text                                                                                   attributes:@{NSForegroundColorAttributeName : [WDGlobal indianRed]}];
+}
 @end

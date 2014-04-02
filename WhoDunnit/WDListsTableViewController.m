@@ -39,8 +39,8 @@ int invitationsCount;
     
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.hidesBackButton = YES;
-
-    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"Courier" size:20.0f]}];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica-Light" size:20.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationItem.title = @"YOUR LISTS";
     [self.tableView registerClass:[WDListsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
 //    [self presentLastVisitedList];
@@ -284,7 +284,7 @@ int invitationsCount;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [[UIColor alloc] initWithRed:198.0/255.0 green:226.0/255.0 blue:255.0/255.0 alpha:1.0];
+    cell.contentView.backgroundColor = [UIColor lightTextColor];
     [self performSegueWithIdentifier:ITEMS_SEGUE sender:self];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "WDSignUpViewController.h"
+#import "WDGlobal.h"
 
 @interface WDSignUpViewController ()
 
@@ -28,8 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIColor *indianred = [UIColor colorWithRed:176.0/255 green:23.0/255.0 blue:31.0/255 alpha:1.0];
-    self.signUpView.backgroundColor = indianred;
+    self.signUpView.backgroundColor = [WDGlobal indianRed];
     [self.signUpView.logo addSubview:[self getAppTitle]];
 
 }
@@ -39,7 +39,6 @@
     
    
     
-    UIColor *indianred = [UIColor colorWithRed:176.0/255 green:23.0/255.0 blue:31.0/255 alpha:1.0];
     UIFont * labelFont = [UIFont fontWithName:@"Helvetica-Light" size:20];
     NSShadow *shadow = [[NSShadow alloc] init];
     
@@ -59,9 +58,9 @@
     
     
     self.signUpView.usernameField.attributedPlaceholder = usernameAttributedString;
-    self.signUpView.usernameField.textColor = indianred;
+    self.signUpView.usernameField.textColor = [WDGlobal indianRed];
     self.signUpView.usernameField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.signUpView.usernameField.layer.borderColor = [indianred CGColor];
+    self.signUpView.usernameField.layer.borderColor = [[WDGlobal indianRed] CGColor];
     self.signUpView.usernameField.layer.borderWidth = 1.5;
     self.signUpView.usernameField.layer.cornerRadius = 7.0f;
     [self.signUpView.usernameField setBackgroundColor:[UIColor whiteColor]];
@@ -71,9 +70,9 @@
     [[NSAttributedString alloc] initWithString:@"Password"                                                                                   attributes:@{                                                                                                NSFontAttributeName: labelFont,                                                                                            NSForegroundColorAttributeName : [UIColor lightTextColor],                                                                                                NSShadowAttributeName : shadow }];
     
     self.signUpView.passwordField.attributedPlaceholder = passwordAttributedString;
-    self.signUpView.passwordField.textColor = indianred;
+    self.signUpView.passwordField.textColor = [WDGlobal indianRed];
     self.signUpView.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.signUpView.passwordField.layer.borderColor = [indianred CGColor];
+    self.signUpView.passwordField.layer.borderColor = [[WDGlobal indianRed] CGColor];
     self.signUpView.passwordField.layer.borderWidth = 1.5;
     self.signUpView.passwordField.layer.cornerRadius = 7.0f;
     [self.signUpView.passwordField setBackgroundColor:[UIColor whiteColor]];
@@ -84,9 +83,9 @@
     [[NSAttributedString alloc] initWithString:@"Email"                                                                                   attributes:@{                                                                                                NSFontAttributeName: labelFont,                                                                                            NSForegroundColorAttributeName : [UIColor lightTextColor],                                                                                                NSShadowAttributeName : shadow }];
     
     self.signUpView.emailField.attributedPlaceholder = emailAttributedString;
-    self.signUpView.emailField.textColor = indianred;
+    self.signUpView.emailField.textColor = [WDGlobal indianRed];
     self.signUpView.emailField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.signUpView.emailField.layer.borderColor = [indianred CGColor];
+    self.signUpView.emailField.layer.borderColor = [[WDGlobal indianRed] CGColor];
     self.signUpView.emailField.layer.borderWidth = 1.5;
     self.signUpView.emailField.layer.cornerRadius = 7.0f;
     [self.signUpView.emailField setBackgroundColor:[UIColor whiteColor]];
@@ -104,7 +103,6 @@
 
 - (UILabel *) getAppTitle
 {
-    UIColor *indianred = [UIColor colorWithRed:176.0/255 green:23.0/255.0 blue:31.0/255 alpha:1.0];
     
     
     NSAttributedString *attributedString =
@@ -112,7 +110,7 @@
     
     CGRect prevFrame = self.signUpView.logo.frame;
     UILabel *appTitle = [[UILabel alloc] initWithFrame:CGRectMake(prevFrame.origin.x, prevFrame.origin.y, prevFrame.size.width + 15.0, prevFrame.size.height + 10.0)];
-    appTitle.backgroundColor = indianred;
+    appTitle.backgroundColor = [WDGlobal indianRed];
     appTitle.textColor = [UIColor whiteColor];
     appTitle.attributedText = attributedString;
     

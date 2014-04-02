@@ -48,6 +48,7 @@
 		845815E218E7B5D2000DFDAD /* WDInvitationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845815E118E7B5D2000DFDAD /* WDInvitationsTableViewCell.m */; };
 		849CBEE918E819B5005C9DAA /* WhoDunnit.png in Resources */ = {isa = PBXBuildFile; fileRef = 849CBEE818E819B5005C9DAA /* WhoDunnit.png */; };
 		84BA742818E06A4F005BAD88 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BA742718E06A4F005BAD88 /* group-25.png */; };
+		84D7BCB118EC13ED00314285 /* WDGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D7BCB018EC13ED00314285 /* WDGlobal.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,8 @@
 		845815E118E7B5D2000DFDAD /* WDInvitationsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDInvitationsTableViewCell.m; sourceTree = "<group>"; };
 		849CBEE818E819B5005C9DAA /* WhoDunnit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WhoDunnit.png; path = WhoDunnit/WhoDunnit.png; sourceTree = SOURCE_ROOT; };
 		84BA742718E06A4F005BAD88 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "WhoDunnit/group-25.png"; sourceTree = SOURCE_ROOT; };
+		84D7BCAF18EC13ED00314285 /* WDGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDGlobal.h; sourceTree = "<group>"; };
+		84D7BCB018EC13ED00314285 /* WDGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDGlobal.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,8 @@
 				843AB01918D3A9BB006BE0FB /* WDAppDelegate.m */,
 				843AB01B18D3A9BB006BE0FB /* Main.storyboard */,
 				843AB02118D3A9BB006BE0FB /* Images.xcassets */,
+				84D7BCAF18EC13ED00314285 /* WDGlobal.h */,
+				84D7BCB018EC13ED00314285 /* WDGlobal.m */,
 				8456CA0D18DCEE6C000C1255 /* Login */,
 				8440A6FD18D3D298003AA472 /* Lists */,
 				8440A70118D3D2D5003AA472 /* Items */,
@@ -447,6 +452,7 @@
 				843AB01A18D3A9BB006BE0FB /* WDAppDelegate.m in Sources */,
 				845815E218E7B5D2000DFDAD /* WDInvitationsTableViewCell.m in Sources */,
 				8440A70A18D4F34E003AA472 /* WDItem.m in Sources */,
+				84D7BCB118EC13ED00314285 /* WDGlobal.m in Sources */,
 				8440A70018D3D2C3003AA472 /* WDItemsViewController.m in Sources */,
 				8413A0C918D708A700E3C370 /* WDListsTableViewCell.m in Sources */,
 				8456CA1318DD27F9000C1255 /* WDLogInViewController.m in Sources */,
@@ -576,8 +582,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -596,8 +602,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Seema Mehta (ZQCNEA4H4H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
