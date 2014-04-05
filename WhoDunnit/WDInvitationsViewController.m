@@ -62,9 +62,11 @@ int invitationsCount;
     PFQuery *query = [PFQuery queryWithClassName:PENDING_INVITES];
     [query whereKey:@"To" equalTo:[PFUser currentUser].email];
     NSArray *objects = [query findObjects];
-    for (PFObject *object in objects) {
-        NSDictionary *invitation = @{@"ListID":object[@"ListID"], @"To":object[@"To"], @"From":object[@"From"]};
-        [self.invitations addObject:invitation];    }
+    for (PFObject *object in objects)
+    {
+        NSDictionary *invitation = @{@"ListID":object[@"ListID"], @"ListName":object[@"ListName"], @"To":object[@"To"], @"From":object[@"From"]};
+        [self.invitations addObject:invitation];
+    }
 }
 
 -(void)addToRole:(NSDictionary *)invitation
@@ -73,13 +75,12 @@ int invitationsCount;
     
     PFQuery *roleQuery = [PFRole query];
     [roleQuery whereKey:@"name" equalTo:roleName];
-    [roleQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            PFRole *role = (PFRole *)object;
-            [role.users addObject:[PFUser currentUser]];
-            [role saveEventually];
-        }
-    }];
+    PFObject *object = [roleQuery getFirstObject];
+    PFRole * role = (PFRole *)object;
+    [role.users addObject:[PFUser currentUser]];
+    if (![role save]) {
+        NSLog(@"Failed to add user %@ to role: %@", [[PFUser currentUser] username], roleName);
+    }
     
 
 }
@@ -115,7 +116,7 @@ int invitationsCount;
     cell.delegate = self;
     cell.indexPath = indexPath;
     NSDictionary *invitation = self.invitations[indexPath.row];
-    cell.invitationText.text = [NSString stringWithFormat:@"List: %@ From: %@", invitation[@"ListID"], invitation[@"From"]];
+    cell.invitationText.text = [NSString stringWithFormat:@"List: %@ From: %@", invitation[@"ListName"], invitation[@"From"]];
     
     return cell;
 }
@@ -123,27 +124,18 @@ int invitationsCount;
 
 #pragma mark WDInvitationsTableViewCellDelegate
 
--(void)acceptInvitation:(NSIndexPath *)indexPath
+-(void)processInvitation:(NSIndexPath *)indexPath whereInvitationAccepted:(BOOL)accepted
 {
-    NSLog(@"handling accept...");
+    NSDictionary *invitation = self.invitations[indexPath.row];
+    [self.invitations removeObjectAtIndex:indexPath.row];
     
-    NSDictionary *invitation = self.invitations[indexPath.row];
-    [self.invitations removeObjectAtIndex:indexPath.row];
     invitationsCount = [self.invitations count];
-    [self.tableView reloadData];
-    [self deletePendingInvite:invitation];
-    [self addToRole:invitation];
-}
-
--(void)rejectInvitation:(NSIndexPath *)indexPath
-{
-    NSLog(@"handling reject...");
-    NSDictionary *invitation = self.invitations[indexPath.row];
-    [self.invitations removeObjectAtIndex:indexPath.row];
-    invitationsCount = [self.invitations count];
-    [self.tableView reloadData];
+    if (accepted) [self addToRole:invitation];
+    
     [self deletePendingInvite:invitation];
 
+    if (invitationsCount == 0) [self.navigationController popViewControllerAnimated:YES];
+    else [self.tableView reloadData];
 }
 
 /*

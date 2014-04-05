@@ -40,11 +40,10 @@ int invitationsCount;
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.hidesBackButton = YES;
     
-    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica-Light" size:20.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica-Light" size:20.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.navigationItem.title = @"YOUR LISTS";
     [self.tableView registerClass:[WDListsTableViewCell class] forCellReuseIdentifier:CELL_IDENTIFIER];
 //    [self presentLastVisitedList];
-    [self reloadUsersLists];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -56,6 +55,8 @@ int invitationsCount;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [self reloadUsersLists];
 
     if (invitationsCount > 0) {
         self.invitationsBarButton.title = [[[NSNumber numberWithInt:invitationsCount] stringValue] stringByAppendingString:@" Invitations"];
@@ -73,6 +74,7 @@ int invitationsCount;
     
     [self.navigationController setToolbarHidden:NO];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -103,13 +105,19 @@ int invitationsCount;
     if (object) return YES;
     else return NO;
 }
-- (void)addList:(NSString *)listName forUser:(PFUser *)user
+
+- (WDList *)addList:(NSString *)listName forUser:(PFUser *)user
 {
     PFObject *list = [PFObject objectWithClassName:@"List"];
     list[@"Name"] = listName;
     if ([list save])
     {
         [self reloadUsersLists];
+        
+        //
+        NSIndexPath *selecteRow = [NSIndexPath indexPathForRow:self.lists.count - 1 inSection:0];
+        [self.tableView selectRowAtIndexPath:selecteRow animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self tableView:self.tableView didSelectRowAtIndexPath:selecteRow];
         
         PFRole *role = [PFRole roleWithName:[list.objectId stringByAppendingString:LIST_ROLE_SUFFIX] acl:[WDACL roleACL]];
         [role.users addObject:user];
@@ -129,8 +137,10 @@ int invitationsCount;
                 }];
             }
         }];
-        
+        return [[WDList alloc] initWithName:list[@"Name"] andListID:list.objectId];
     }
+    NSLog(@"Failed to save list: %@", listName);
+    return nil;
 }
 
 - (void)deleteList:(WDList *)list
@@ -186,12 +196,9 @@ int invitationsCount;
 - (void)reloadUsersLists
 {
     PFQuery *queryForLists = [PFQuery queryWithClassName:@"List"];
-    [queryForLists findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            self.lists = [objects mutableCopy];
-            [self.tableView reloadData];
-        }
-    }];
+    NSArray *pfObjects = [queryForLists findObjects];
+    self.lists = [pfObjects mutableCopy];
+    [self.tableView reloadData];
 }
 
 
@@ -207,7 +214,8 @@ int invitationsCount;
 
 - (IBAction)logoutBarButtonItemPressed:(UIBarButtonItem *)sender
 {
-    [[[UIAlertView alloc] initWithTitle:@"Logout?" message:@"Are you sure you want to logout?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil] show];
+    NSString *currentUsername = [[PFUser currentUser] username];
+    [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Logout %@?", currentUsername] message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil] show];
 }
 
 - (IBAction)invitationBarButtonPressed:(UIBarButtonItem *)sender {
@@ -244,10 +252,10 @@ int invitationsCount;
         if (buttonIndex == 1) {
             NSString *listName = [alertView textFieldAtIndex:0].text;
             [self addList:listName forUser:self.user];
-            [self reloadUsersLists];
+//            [self reloadUsersLists];
         }
     }
-    else if ([alertView.title isEqualToString:@"Logout?"])
+    else if ([alertView.title hasPrefix:@"Logout"])
     {
         if (buttonIndex == 1) {
             [PFUser logOut];
@@ -317,15 +325,16 @@ int invitationsCount;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    UIBarButtonItem *newBackButton =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    
+
     if ([segue.identifier isEqualToString:ITEMS_SEGUE]) {
         if ([segue.destinationViewController isKindOfClass:[WDItemsViewController class]]) {
-
-            UIBarButtonItem *newBackButton =
-            [[UIBarButtonItem alloc] initWithTitle:@""
-                                             style:UIBarButtonItemStyleBordered
-                                            target:nil
-                                            action:nil];
-            [[self navigationItem] setBackBarButtonItem:newBackButton];
 
             NSIndexPath *path = [self.tableView indexPathForSelectedRow];
             PFObject *pfObject = self.lists[path.row];

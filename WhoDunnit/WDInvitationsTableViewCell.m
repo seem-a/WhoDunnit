@@ -38,11 +38,11 @@
 #pragma mark IBActions
 
 - (IBAction)acceptButtonPressed:(UIButton *)sender {
-    [self.delegate acceptInvitation:self.indexPath];
+    [self.delegate processInvitation:self.indexPath whereInvitationAccepted:YES];
 }
 
 - (IBAction)rejectButtonPressed:(UIButton *)sender {
-    [self.delegate rejectInvitation:self.indexPath];
+    [self.delegate processInvitation:self.indexPath whereInvitationAccepted:NO];
 }
 
 

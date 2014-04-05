@@ -274,10 +274,11 @@ int invitationsCount;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
     
+    [[UINavigationBar appearance] setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"Helvetica-Light" size:20.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
+
     self.navigationController.toolbar.barTintColor = [WDGlobal indianRed];
     self.navigationController.toolbar.tintColor = [UIColor whiteColor];
     self.navigationController.toolbar.translucent = NO;
-    
 }
 
 @end

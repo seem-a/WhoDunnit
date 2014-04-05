@@ -35,6 +35,8 @@ int invitationsCount;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = self.list.name;
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.members = [[NSMutableArray alloc] init];
@@ -158,6 +160,7 @@ int invitationsCount;
             if (count == 0) {
                 PFObject *invite = [PFObject objectWithClassName:PENDING_INVITES];
                 invite[@"ListID"] = self.list.listID;
+                invite[@"ListName"] = self.list.name;
                 invite[@"To"] = emailAddress;
                 invite[@"From"] = [PFUser currentUser].username;
                 if ([invite save])

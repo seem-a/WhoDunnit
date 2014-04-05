@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 @protocol WDInvitationsTableViewCellDelegate <NSObject>
 
--(void)acceptInvitation:(NSIndexPath *)indexPath;
--(void)rejectInvitation:(NSIndexPath *)indexPath;
+-(void)processInvitation:(NSIndexPath *)indexPath whereInvitationAccepted:(BOOL)accepted;
+
 
 @end
 
